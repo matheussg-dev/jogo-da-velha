@@ -6,7 +6,9 @@
 
 int main() {
     
-int start;
+    int start;
+    int l;
+    int c;
 
     printf("Ola bem vindo a jogo da velha.\n");
     printf("\t   |   |   \n");
@@ -24,4 +26,10 @@ int start;
     printf("\t-----------\n");
     printf("\t 7 | 8 | 9 \n");
     
+    char posiçaoJogo[3][3];
+    for(l = 0; l < 3; l++) {
+        for(c = 0; c < 3; c++) {
+            posiçaoJogo[l][c] = ' ';
+        }
+    }
 }
