@@ -1,0 +1,40 @@
+#include <stdio.h> 
+#define sim 1 
+#define nao 2
+
+int main()
+{
+    int resposta;
+    int vetor;
+	int posiçaovetor[8];
+    
+    printf("Ola bem vindo a jogo da velha\n");
+    printf("\t   |   |   \n");
+    printf("\t-----------\n");
+    printf("\t   |   |   \n");
+    printf("\t-----------\n");
+    printf("\t   |   |   \n");
+    
+    printf("pronto para começar sim/nao\n");
+    scanf("%i", &resposta);
+    
+    printf("\t 1 | 2 | 3 \n");
+    printf("\t-----------\n");
+    printf("\t 4 | 5 | 6 \n");
+    printf("\t-----------\n");
+    printf("\t 7 | 8 | 9 \n");
+	
+	printf("escolha um numero 1 a 9\n");
+    scanf("%i", &posiçaovetor[0]);
+	
+    printf("Posiçao escolida e %i\n", posiçaovetor[0]);
+	
+	return(0);
+    
+}
+errado
+ printf("\t" &posiçaovetor[0] " | " &posiçaovetor[1] " | " &posiçaovetor[2] \n);
+        printf("\t-----------\n");
+        printf("\t" &posiçaovetor[3] " | " &posiçaovetor[4] " | " &posiçaovetor[5] \n);
+        printf("\t-----------\n");
+        printf("\t" &posiçaovetor[6] " | " &posiçaovetor[7] " | " &posiçaovetor[8] \n);

@@ -1,0 +1,72 @@
+#include <stdio.h> 
+#define sim 1 
+#define nao 2
+
+int main()
+{
+    int resposta;
+    int vetor;
+	int posiçaovetor[9];
+	int i; 
+	int vet[9];
+	
+	    printf("Ola bem vindo a jogo da velha\n");
+    printf("\t   |   |   \n");
+    printf("\t-----------\n");
+    printf("\t   |   |   \n");
+    printf("\t-----------\n");
+    printf("\t   |   |   \n");
+    
+    printf("pronto para começar sim/nao\n");
+    scanf("%i", &resposta);
+    
+    printf("\t 1 | 2 | 3 \n");
+    printf("\t-----------\n");
+    printf("\t 4 | 5 | 6 \n");
+    printf("\t-----------\n");
+    printf("\t 7 | 8 | 9 \n");
+	
+    int vet[9];
+    vet[0] = 0;
+    vet[1] = 1;
+    vet[2] = 2;
+    vet[3] = 0;
+    vet[4] = 2;
+    vet[5] = 0;
+    vet[6] = 0;
+    vet[7] = 1;
+    vet[8] = 0;
+    
+    for(int x=0;x<9;x++){
+    
+    printf("Ola bem vindo a jogo da velha\n");
+    printf("\t   |   |   \n");
+    printf("\t-----------\n");
+    printf("\t   |   |   \n");
+    printf("\t-----------\n");
+    printf("\t   |   |   \n");
+    
+    printf("pronto para começar sim/nao\n");
+    scanf("%i", &resposta);
+    
+    printf("\t 1 | 2 | 3 \n");
+    printf("\t-----------\n");
+    printf("\t 4 | 5 | 6 \n");
+    printf("\t-----------\n");
+    printf("\t 7 | 8 | 9 \n");
+	
+	printf("escolha um numero 1 a 9\n");
+    scanf("%i", &posiçaovetor[i]);
+	
+    printf("Posiçao escolida e %i\n", posiçaovetor[0]);
+    
+    }
+    }
+}
+}
+errado
+		printf("\t" &posiçaovetor[0] = %p " | " &posiçaovetor[1] = %p " | " &posiçaovetor[2] = %p \n);
+        printf("\t-----------\n");
+        printf("\t" &posiçaovetor[3] = %p " | " &posiçaovetor[4] = %p " | " &posiçaovetor[5] = %p \n);
+        printf("\t-----------\n");
+        printf("\t" &posiçaovetor[6] = %p " | " &posiçaovetor[7] = %p " | " &posiçaovetor[8] = %p \n);
