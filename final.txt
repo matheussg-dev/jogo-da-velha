@@ -2,11 +2,7 @@
 #define sim 1 
 #define nao 2
 
-int main()
-{
-    int resposta;
-    int vetor;
-	int posiçaovetor[8];
+int main() {
     
     printf("Ola bem vindo a jogo da velha\n");
     printf("\t   |   |   \n");
@@ -24,39 +20,18 @@ int main()
     printf("\t-----------\n");
     printf("\t 7 | 8 | 9 \n");
 	
-	printf("escolha um numero 1 a 9\n");
-    scanf("%i", &posiçaovetor[0]);
-	
     printf("Posiçao escolida e %i\n", posiçaovetor[0]);
 	
+    for(l = 0; l < 3; l++) {
+        for(c = 0; c < 3; c++) {
+            posiçaoJogo[l][c] = ' ';
+        }
+    }
+	for(l = 0; l < 3; l++) {
+        for(c = 0; c < 3; c++) {
+            printf("%c", posiçaoJogo[l][c]);
+        }
+        printf("\n");
+    }
 	return(0);
-    
 }
-errado
- printf("\t" &posiçaovetor[0] " | " &posiçaovetor[1] " | " &posiçaovetor[2] \n);
-        printf("\t-----------\n");
-        printf("\t" &posiçaovetor[3] " | " &posiçaovetor[4] " | " &posiçaovetor[5] \n);
-        printf("\t-----------\n");
-        printf("\t" &posiçaovetor[6] " | " &posiçaovetor[7] " | " &posiçaovetor[8] \n);
-		
-		int mensagem();
-
-
-
-int main() {
-    
-    printf("Ola bem vindo a jogo da velha\n");
-    printf("\t   |   |   \n");
-    printf("\t-----------\n");
-    printf("\t   |   |   \n");
-    printf("\t-----------\n");
-    printf("\t   |   |   \n");
-    
-    printf("\t 1 | 2 | 3 \n");
-    printf("\t-----------\n");
-    printf("\t 4 | 5 | 6 \n");
-    printf("\t-----------\n");
-    printf("\t 7 | 8 | 9 \n");
-	
-}
-    char posiçaoJogo[3][3];
