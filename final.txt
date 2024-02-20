@@ -1,37 +1,130 @@
 #include <stdio.h> 
-#define sim 1 
-#define nao 2
+#include <stdlib.h>
+
+#define x 1
+#define o 2
+
+char posicaoJogo[3][3];
+
+void mensagemIniciar();
+void letreiro();
+void entradaMatriz(int push, char elemento);
+void escolhaIniciar();
+
 
 int main() {
     
-    printf("Ola bem vindo a jogo da velha\n");
-    printf("\t   |   |   \n");
-    printf("\t-----------\n");
-    printf("\t   |   |   \n");
-    printf("\t-----------\n");
-    printf("\t   |   |   \n");
+    mensagemIniciar();
+    escolhaIniciar();
+    letreiro();
     
-    printf("pronto para começar sim/nao\n");
+}
+
+void mensagemIniciar() {
+    
+    printf("Ola bem vindo a jogo da velha v 0.2\n");
+    printf("Feito em linguagem C\n\n");
+    printf("\t   |   |   \n");
+    printf("\t-----------\n");
+    printf("\t   |   |   \n");
+    printf("\t-----------\n");
+    printf("\t   |   |   \n\n");
+    
+}
+    
+void escolhaIniciar() {
+    
+    int resposta;
+    
+    printf("\tescolha uma das opcoes para proseguir.\n");
+    printf("\nIniciar: 1\n");
+    printf("Sair: 2\n");
+    printf("\nOpcao: ");
     scanf("%i", &resposta);
+    printf("\n");
+
+    if(resposta == 1) {
+        printf("Iniciando...\n");    
+        } else if (resposta == 2) {
+            printf("Saindo...\n");
+            exit(0);
+            } else {
+                system("clear");
+                printf("Opção inválida. Tente novamente.\n");
+                return escolhaIniciar();
+    }
+}
+
+
+void letreiro() {
+    
+    int posicao;
+    int controle = 1;
+    int coluna;
+    int linha;
     
     printf("\t 1 | 2 | 3 \n");
     printf("\t-----------\n");
     printf("\t 4 | 5 | 6 \n");
     printf("\t-----------\n");
     printf("\t 7 | 8 | 9 \n");
-	
-    printf("Posiçao escolida e %i\n", posiçaovetor[0]);
-	
-    for(l = 0; l < 3; l++) {
-        for(c = 0; c < 3; c++) {
-            posiçaoJogo[l][c] = ' ';
+    
+    while(1) {
+        if(controle %2 == 0) {
+            printf("Jogador O informe a posicao.\n\n");
+            scanf("%d", &posicao);
+            controle --;
+            entradaMatriz(posicao, 'O');
+        } else {
+            printf("Jogador x informe a posicao.\n\n");
+            scanf("%d", &posicao);
+            controle ++;
+            entradaMatriz(posicao, 'X');
+        }
+
+        for(linha = 0; linha < 3; linha++) {
+            for(coluna = 0; coluna < 3; coluna++) {
+                printf ("%c", posicaoJogo[linha][coluna]);
+            }
+            printf("\n");
         }
     }
-	for(l = 0; l < 3; l++) {
-        for(c = 0; c < 3; c++) {
-            printf("%c", posiçaoJogo[l][c]);
-        }
-        printf("\n");
+}
+
+void entradaMatriz(int push, char elemento) {
+    if (push == 1) {
+        posicaoJogo[0][0] = elemento;
     }
-	return(0);
+    
+    if (push == 2) {
+        posicaoJogo[0][1] = elemento;
+    }
+    
+    if (push == 3) {
+        posicaoJogo[0][2] = elemento;
+    }
+    
+    if (push == 4) {
+        posicaoJogo[1][0] = elemento;
+    }
+    
+    if (push == 5) {
+        posicaoJogo[1][1] = elemento;
+    }
+    
+    if (push == 6) {
+        posicaoJogo[1][2] = elemento;
+    }
+    
+    if (push == 7) {
+        posicaoJogo[2][0] = elemento;
+    }
+    
+    if (push == 8) {
+        posicaoJogo[2][1] = elemento;
+    }
+    
+    if (push == 9) {
+        posicaoJogo[2][2] = elemento;
+    }
 }

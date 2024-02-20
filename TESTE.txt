@@ -1,6 +1,13 @@
 #include <stdio.h> 
+
 #define sim 1 
 #define nao 2
+#define linhaQuantidade 3
+#define colunaQuantidade 3
+#define vazio 0
+
+char posiçaoJogo[3][3];
+char posicaoJogo[linhaQuantidade][colunaQuantidade];
 
 int main()
 {
@@ -12,7 +19,6 @@ int main()
 	int start;
     int l;
     int c;
-    char posiçaoJogo[3][3];
 	
 	    printf("Ola bem vindo a jogo da velha\n");
     printf("\t   |   |   \n");
@@ -59,10 +65,6 @@ int main()
         }
         printf("\n");
     }
-	
-	//#define linhaQuantidade 3
-	//#define colunaQuantidade 3
-	//char posicaoJogo[linhaQuantidade][colunaQuantidade];
 	
 	switch (resposta) {
         

@@ -23,7 +23,7 @@ int main() {
 
 void mensagemIniciar() {
     
-    printf("Ola bem vindo a jogo da velha v 0.2\n");
+    printf("Ola bem vindo a jogo da velha v0.2.1 .\n");
     printf("Feito em linguagem C\n\n");
     printf("\t   |   |   \n");
     printf("\t-----------\n");
@@ -63,7 +63,6 @@ void letreiro() {
     int controle = 1;
     int coluna;
     int linha;
-    //mensagem inicial
     
     printf("\t 1 | 2 | 3 \n");
     printf("\t-----------\n");
