@@ -1,71 +1,61 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define x 1
 #define o 2
-#define vazio 0
 
 char posicaoJogo[3][3];
 
-//#define linhaQuantidade 3
-//#define colunaQuantidade 3
-//char posicaoJogo[linhaQuantidade][colunaQuantidade];
-
-
 //protopitagem de metodo
-void iniciar();
+void mensagemIniciar();
 void letreiro();
 void entradaMatriz(int push, char elemento);
-void clear();
+void escolhaIniciar();
 
 
 int main() {
     
-    int posicao;
-    int controle = 1;
-    int coluna;
-    int linha;
-    
-    iniciar();
+    mensagemIniciar();
+    escolhaIniciar();
     letreiro();
     
 }
 
-void iniciar() {
+void mensagemIniciar() {
     
-    char resposta;
-    
-    printf("Ola bem vindo a jogo da velha v 0.1\n");
+    printf("Ola bem vindo a jogo da velha v 0.2\n");
     printf("Feito em linguagem C\n\n");
     printf("\t   |   |   \n");
     printf("\t-----------\n");
     printf("\t   |   |   \n");
     printf("\t-----------\n");
-    printf("\t   |   |   \n");
+    printf("\t   |   |   \n\n");
+    
+}
+    
+void escolhaIniciar() {
+    
+    int resposta;
     
     printf("\tescolha uma das opcoes para proseguir.\n");
     printf("\nIniciar: 1\n");
     printf("Sair: 2\n");
     printf("\nOpcao: ");
-    scanf("%c", &resposta);
+    scanf("%i", &resposta);
     printf("\n");
 
-    switch (resposta) {
-        
-        //código para a opção Iniciar
-        case '1':
-            printf("Iniciando...\n");
-            break;
-            
-        //código para a opção Sair
-        case '2':
+    if(resposta == 1) {
+        printf("Iniciando...\n");    
+        } else if (resposta == 2) {
             printf("Saindo...\n");
-            break;
-            
-        default:
-            printf("Opção inválida. Tente novamente.\n");
-            break;
+            exit(0);
+            } else {
+                system("clear");
+                printf("Opção inválida. Tente novamente.\n\n");
+                return escolhaIniciar();
     }
 }
+
 
 void letreiro() {
     
@@ -83,13 +73,12 @@ void letreiro() {
     
     while(1) {
         if(controle %2 == 0) {
-            printf("Jogador O informe a posicao.\n");
+            printf("Jogador O informe a posicao.\n\n");
             scanf("%d", &posicao);
             controle --;
             entradaMatriz(posicao, 'O');
-        }
-        else {
-            printf("Jogador x informe a posicao.\n");
+        } else {
+            printf("Jogador x informe a posicao.\n\n");
             scanf("%d", &posicao);
             controle ++;
             entradaMatriz(posicao, 'X');

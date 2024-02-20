@@ -59,6 +59,27 @@ int main()
         }
         printf("\n");
     }
+	
+	//#define linhaQuantidade 3
+	//#define colunaQuantidade 3
+	//char posicaoJogo[linhaQuantidade][colunaQuantidade];
+	
+	switch (resposta) {
+        
+        //código para a opção Iniciar
+        case '1':
+            printf("Iniciando...\n");
+            break;
+            
+        //código para a opção Sair
+        case '2':
+            printf("Saindo...\n");
+            break;
+            
+        default:
+            printf("Opção inválida. Tente novamente.\n");
+            break;
+    }
 
 errado
 		printf("\t" &posiçaovetor[0] = %p " | " &posiçaovetor[1] = %p " | " &posiçaovetor[2] = %p \n);
