@@ -3,7 +3,12 @@
 #define x 1
 #define o 2
 #define vazio 0
+
 char posicaoJogo[3][3];
+
+//#define linhaQuantidade 3
+//#define colunaQuantidade 3
+//char posicaoJogo[linhaQuantidade][colunaQuantidade];
 
 
 //protopitagem de metodo
@@ -17,34 +22,12 @@ int main() {
     
     int posicao;
     int controle = 1;
-    int c;
-    int l;
+    int coluna;
+    int linha;
     
     iniciar();
-  
     letreiro();
-    while(1) {
-        if(controle %2 == 0) {
-            printf("Jogador O informe a posicao.\n");
-            scanf("%d", &posicao);
-            controle --;
-            entradaMatriz(posicao, 'O');
-        }
-        else {
-            printf("Jogador x informe a posicao.\n");
-            scanf("%d", &posicao);
-            controle ++;
-            entradaMatriz(posicao, 'X');
-        }
-
-        //matriz do jogo da velha
-        for(l = 0; l < 3; l++) {
-            for(c = 0; c < 3; c++) {
-                printf ("%c", posicaoJogo[l][c]);
-            }
-            printf("\n");
-        }
-    }
+    
 }
 
 void iniciar() {
@@ -68,12 +51,12 @@ void iniciar() {
 
     switch (resposta) {
         
-        // Adicione aqui o código para a opção Iniciar
+        //código para a opção Iniciar
         case '1':
             printf("Iniciando...\n");
             break;
             
-        // Adicione aqui o código para a opção Sair
+        //código para a opção Sair
         case '2':
             printf("Saindo...\n");
             break;
@@ -82,12 +65,14 @@ void iniciar() {
             printf("Opção inválida. Tente novamente.\n");
             break;
     }
-
-    return 0;
 }
 
 void letreiro() {
     
+    int posicao;
+    int controle = 1;
+    int coluna;
+    int linha;
     //mensagem inicial
     
     printf("\t 1 | 2 | 3 \n");
@@ -95,6 +80,29 @@ void letreiro() {
     printf("\t 4 | 5 | 6 \n");
     printf("\t-----------\n");
     printf("\t 7 | 8 | 9 \n");
+    
+    while(1) {
+        if(controle %2 == 0) {
+            printf("Jogador O informe a posicao.\n");
+            scanf("%d", &posicao);
+            controle --;
+            entradaMatriz(posicao, 'O');
+        }
+        else {
+            printf("Jogador x informe a posicao.\n");
+            scanf("%d", &posicao);
+            controle ++;
+            entradaMatriz(posicao, 'X');
+        }
+
+        //matriz do jogo da velha
+        for(linha = 0; linha < 3; linha++) {
+            for(coluna = 0; coluna < 3; coluna++) {
+                printf ("%c", posicaoJogo[linha][coluna]);
+            }
+            printf("\n");
+        }
+    }
 }
 
 void entradaMatriz(int push, char elemento) {
