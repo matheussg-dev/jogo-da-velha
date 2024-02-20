@@ -7,8 +7,10 @@ char posicaoJogo[3][3];
 
 
 //protopitagem de metodo
+void iniciar();
 void letreiro();
 void entradaMatriz(int push, char elemento);
+void clear();
 
 
 int main() {
@@ -17,6 +19,8 @@ int main() {
     int controle = 1;
     int c;
     int l;
+    
+    iniciar();
   
     letreiro();
     while(1) {
@@ -43,16 +47,48 @@ int main() {
     }
 }
 
+void iniciar() {
+    
+    char resposta;
+    
+    printf("Ola bem vindo a jogo da velha v 0.1\n");
+    printf("Feito em linguagem C\n\n");
+    printf("\t   |   |   \n");
+    printf("\t-----------\n");
+    printf("\t   |   |   \n");
+    printf("\t-----------\n");
+    printf("\t   |   |   \n");
+    
+    printf("\tescolha uma das opcoes para proseguir.\n");
+    printf("\nIniciar: 1\n");
+    printf("Sair: 2\n");
+    printf("\nOpcao: ");
+    scanf("%c", &resposta);
+    printf("\n");
+
+    switch (resposta) {
+        
+        // Adicione aqui o código para a opção Iniciar
+        case '1':
+            printf("Iniciando...\n");
+            break;
+            
+        // Adicione aqui o código para a opção Sair
+        case '2':
+            printf("Saindo...\n");
+            break;
+            
+        default:
+            printf("Opção inválida. Tente novamente.\n");
+            break;
+    }
+
+    return 0;
+}
+
 void letreiro() {
     
     //mensagem inicial
-
-    printf("Ola bem vindo a jogo da velha.\n\n");
-    printf("\t   |   |   \n");
-    printf("\t-----------\n");
-    printf("\t   |   |   \n");
-    printf("\t-----------\n");
-    printf("\t   |   |   \n");
     
     printf("\t 1 | 2 | 3 \n");
     printf("\t-----------\n");
