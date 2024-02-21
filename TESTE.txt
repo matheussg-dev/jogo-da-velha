@@ -83,6 +83,43 @@ int main()
             break;
     }
 
+void entradaMatriz(int push, char elemento) {
+    if (push == 1) {
+        posicaoJogo[0][0] = elemento;
+    }
+    
+    if (push == 2) {
+        posicaoJogo[0][1] = elemento;
+    }
+    
+    if (push == 3) {
+        posicaoJogo[0][2] = elemento;
+    }
+    
+    if (push == 4) {
+        posicaoJogo[1][0] = elemento;
+    }
+    
+    if (push == 5) {
+        posicaoJogo[1][1] = elemento;
+    }
+    
+    if (push == 6) {
+        posicaoJogo[1][2] = elemento;
+    }
+    
+    if (push == 7) {
+        posicaoJogo[2][0] = elemento;
+    }
+    
+    if (push == 8) {
+        posicaoJogo[2][1] = elemento;
+    }
+    
+    if (push == 9) {
+        posicaoJogo[2][2] = elemento;
+    }
+}
 errado
 		printf("\t" &posiçaovetor[0] = %p " | " &posiçaovetor[1] = %p " | " &posiçaovetor[2] = %p \n);
         printf("\t-----------\n");
