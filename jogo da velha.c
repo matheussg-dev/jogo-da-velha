@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <conio.h>
 
-#define vazio _
 #define x 1
 #define o 2
 
@@ -151,6 +150,19 @@ int validar(char jogada) {
             printf("\n");
     }
     
-    return venceu;
+    for(coluna = 0; coluna < 3; coluna++) {
+            for(linha = 0; linha < 3; linha++) {
+                if (posicaoJogo[linha][coluna] == jogada) {
+                    valida ++;
+                }
+            }
+            if(valida == 3) {
+                venceu = 1;
+                break;
+            }
+            valida = 0;
+            printf("\n");
+    }
     
+    return venceu;
 }
