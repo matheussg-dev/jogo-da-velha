@@ -178,6 +178,27 @@ for(coluna = 0; coluna < 3; coluna++) {
             for(coluna = 0; coluna < 3; coluna++);
         }
 		
+		if(1 <= push && push > 10) {
+        printf("\tposicao inválida.\n\n");
+        printf("\t 1 | 2 | 3 \n");
+        printf("\t-----------\n");
+        printf("\t 4 | 5 | 6 \n");
+        printf("\t-----------\n");
+        printf("\t 7 | 8 | 9 \n\n");
+    }
+	
+	if(push >= 1 && push <= 3) {
+        posicaoJogo[0][push - 1] = elemento;
+    }
+    
+    else if(push >= 4 && push <= 6) {
+        posicaoJogo[1][push - 4] = elemento;
+    }
+    
+    else if(push >= 7 && push <= 9) {
+        posicaoJogo[2][push - 7] = elemento;
+    }
+    
 
 errado
 		printf("\t" &posiçaovetor[0] = %p " | " &posiçaovetor[1] = %p " | " &posiçaovetor[2] = %p \n);
