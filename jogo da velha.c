@@ -2,15 +2,13 @@
 #include <stdlib.h>
 #include <conio.h>
 
-#define JogadorNulo ' '
-#define jodadorX 'X'
-#define jogadorO 'O'
+#define linhaQuantidade 3
+#define colunaQuantidade 3
 
 
-char posicaoJogo[3][3];
+char posicaoJogo[linhaQuantidade][colunaQuantidade];
 
 //protopitagem de metodo
-void mensagemIniciar();
 void letreiro();
 void entradaMatriz(int push, char elemento);
 void escolhaIniciar();
@@ -18,27 +16,24 @@ int validar(char jogada);
 
 int main() {
     
-    mensagemIniciar();
     escolhaIniciar();
     letreiro();
     
 }
 
-void mensagemIniciar() {
-    
-    printf("\tOla bem vindo a jogo da velha v0.4 .\n");
-    printf("\tFeito em linguagem C\n\n");
-    printf("\t   |   |   \n");
-    printf("\t-----------\n");
-    printf("\t   |   |   \n");
-    printf("\t-----------\n");
-    printf("\t   |   |   \n\n");
-    
-}
     
 void escolhaIniciar() {
     
     int resposta;
+    
+    printf("\tOla bem vindo a jogo da velha v0.4.1 .\n");
+    printf("\tFeito em linguagem C\n\n");
+    printf("\t - | - | - \n");
+    printf("\t-----------\n");
+    printf("\t - | - | - \n");
+    printf("\t-----------\n");
+    printf("\t - | - | - \n\n");
+    
     
     printf("\tescolha uma das opcoes para proseguir.\n");
     printf("\nIniciar: 1\n");
@@ -73,6 +68,11 @@ void letreiro() {
     printf("\t\t 4 | 5 | 6 \n");
     printf("\t\t-----------\n");
     printf("\t\t 7 | 8 | 9 \n\n");
+
+    //matriz do jogo da velha
+    for(linha = 0; linha < linhaQuantidade; linha++) 
+        for(coluna = 0; coluna < colunaQuantidade; coluna++)
+            posicaoJogo[linha][coluna] = '-';
     
     while(1) {
         if(controle %2 == 0) {
@@ -95,10 +95,6 @@ void letreiro() {
         printf("\t-----------\n");
         printf("\t %c | %c | %c \n", posicaoJogo[2][0], posicaoJogo[2][1], posicaoJogo[2][2]);
 
-        //matriz do jogo da velha
-        for(linha = 0; linha < 3; linha++) {
-            for(coluna = 0; coluna < 3; coluna++);
-        }
         
         if(validar(xo) == 1) {
             printf("parabens jogado %c venceu", xo);
@@ -109,7 +105,7 @@ void letreiro() {
 
 void entradaMatriz(int push, char elemento) {
     
-    if(1 <= push && push >= 9) {
+    if(1 <= push && push > 10) {
         printf("\tposicao inválida.\n\n");
         printf("\t 1 | 2 | 3 \n");
         printf("\t-----------\n");
@@ -137,8 +133,8 @@ int validar(char jogada) {
     int linha;
     int coluna;
     
-    for(linha = 0; linha < 3; linha++) {
-            for(coluna = 0; coluna < 3; coluna++) {
+    for(linha = 0; linha < linhaQuantidade; linha++) {
+            for(coluna = 0; coluna < colunaQuantidade; coluna++) {
                 if (posicaoJogo[linha][coluna] == jogada) {
                     valida ++;
                 }
@@ -151,8 +147,8 @@ int validar(char jogada) {
             printf("\n");
     }
     
-    for(coluna = 0; coluna < 3; coluna++) {
-            for(linha = 0; linha < 3; linha++) {
+    for(coluna = 0; coluna < colunaQuantidade; coluna++) {
+            for(linha = 0; linha < linhaQuantidade; linha++) {
                 if (posicaoJogo[linha][coluna] == jogada) {
                     valida ++;
                 }
