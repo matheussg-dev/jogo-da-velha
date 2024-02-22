@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <conio.h>
 
-#define x 1
-#define o 2
+#define JogadorNulo ' '
+#define jodadorX 'X'
+#define jogadorO 'O'
 
 
 char posicaoJogo[3][3];
@@ -25,7 +26,7 @@ int main() {
 
 void mensagemIniciar() {
     
-    printf("\tOla bem vindo a jogo da velha v0.3 .\n");
+    printf("\tOla bem vindo a jogo da velha v0.4 .\n");
     printf("\tFeito em linguagem C\n\n");
     printf("\t   |   |   \n");
     printf("\t-----------\n");
@@ -86,15 +87,17 @@ void letreiro() {
             controle ++;
             xo = 'X';
             entradaMatriz(posicao, xo);
-            
         }
+        
+        printf("\t %c | %c | %c \n", posicaoJogo[0][0], posicaoJogo[0][1], posicaoJogo[0][2]);
+        printf("\t-----------\n");
+        printf("\t %c | %c | %c \n", posicaoJogo[1][0], posicaoJogo[1][1], posicaoJogo[1][2]);
+        printf("\t-----------\n");
+        printf("\t %c | %c | %c \n", posicaoJogo[2][0], posicaoJogo[2][1], posicaoJogo[2][2]);
 
         //matriz do jogo da velha
         for(linha = 0; linha < 3; linha++) {
-            for(coluna = 0; coluna < 3; coluna++) {
-                printf ("%c", posicaoJogo[linha][coluna]);
-            }
-            printf("\n");
+            for(coluna = 0; coluna < 3; coluna++);
         }
         
         if(validar(xo) == 1) {
@@ -106,14 +109,13 @@ void letreiro() {
 
 void entradaMatriz(int push, char elemento) {
     
-    if(!(1 >= push && push <= 9)) {
+    if(1 <= push && push >= 9) {
         printf("\tposicao inválida.\n\n");
         printf("\t 1 | 2 | 3 \n");
         printf("\t-----------\n");
         printf("\t 4 | 5 | 6 \n");
         printf("\t-----------\n");
         printf("\t 7 | 8 | 9 \n\n");
-
     }
     
     if(push >= 1 && push <= 3) {
@@ -127,7 +129,6 @@ void entradaMatriz(int push, char elemento) {
     else if(push >= 7 && push <= 9) {
         posicaoJogo[2][push - 7] = elemento;
     }
-    
 }
 
 int validar(char jogada) {

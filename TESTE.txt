@@ -120,6 +120,14 @@ void entradaMatriz(int push, char elemento) {
         posicaoJogo[2][2] = elemento;
     }
 }
+
+        //matriz do jogo da velha
+        for(linha = 0; linha < 3; linha++) {
+            for(coluna = 0; coluna < 3; coluna++) {
+                printf ("%c", posicaoJogo[linha][coluna]);
+            }
+            printf("\n");
+
 errado
 		printf("\t" &posiçaovetor[0] = %p " | " &posiçaovetor[1] = %p " | " &posiçaovetor[2] = %p \n);
         printf("\t-----------\n");
