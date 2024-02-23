@@ -64,7 +64,7 @@ void escolhajogador() {
     printf("\tescolha o Jogador.\n\n");
     printf("jogadorX: X\n");
     printf("jogadorO: O\n");
-    scanf("%c", &respostaJogador);
+    scanf(" %c", &respostaJogador);
     printf("\n");
     
     if(respostaJogador == JogadorX) {
@@ -75,9 +75,10 @@ void escolhajogador() {
             letreiro(2);
             } else {
                 system("clear");
-                printf("Jogador inválido. Tente novamente.\n");
+                printf("Escolha inválida. Tente novamente.\n");
                 return escolhajogador();
-    }
+            }
+            
     printf("\t\t 1 | 2 | 3 \n");
     printf("\t\t-----------\n");
     printf("\t\t 4 | 5 | 6 \n");
@@ -189,5 +190,14 @@ int validar(char jogada) {
             }
             valida = 0;
     }
+
+    if(posicaoJogo[0][0] = jogada && posicaoJogo[1][1] = jogada && posicaoJogo[2][2] = jogada) {
+        venceu = 1;
+        break;
+    } else if(posicaoJogo[0][2] = jogada && posicaoJogo[1][1] = jogada && posicaoJogo[2][0]= jogada) {
+        veceu = 1;
+        break;
+    }
+    
     return venceu;
 }
