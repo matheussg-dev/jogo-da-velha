@@ -213,3 +213,74 @@ certo
         printf("\t %c | %c | %c \n", posicaoJogo[1][0], posicaoJogo[1][1], posicaoJogo[1][2]);
         printf("\t-----------\n");
         printf("\t %c | %c | %c \n", posicaoJogo[2][0], posicaoJogo[2][1], posicaoJogo[2][2]);
+
+
+while(posicao, elemento) {
+    if(posicao >= 1 && posicao <= 3) {
+        if (posicaoJogo[0][posicao - 1] != poicaoVazia) {
+            printf("Essa posicao ja foi preenchida.\n");
+            printf("Escolha novamente!\n\n");
+            printf("\t 1 | 2 | 3 \n");
+            printf("\t-----------\n");
+            printf("\t 4 | 5 | 6 \n");
+            printf("\t-----------\n");
+            printf("\t 7 | 8 | 9 \n\n");
+        } else { 
+            posicaoJogo[0][posicao - 1] = elemento;
+        }
+    }
+    
+    else if(posicao >= 4 && posicao <= 6) {
+        if (posicaoJogo[1][posicao - 4] != poicaoVazia) {
+            printf("Essa posicao ja foi preenchida.\n");
+            printf("Escolha novamente!\n\n");
+            printf("\t 1 | 2 | 3 \n");
+            printf("\t-----------\n");
+            printf("\t 4 | 5 | 6 \n");
+            printf("\t-----------\n");
+            printf("\t 7 | 8 | 9 \n\n");
+        } else { 
+            posicaoJogo[1][posicao - 4] = elemento;
+        }
+    }
+    
+    else if(posicao >= 7 && posicao <= 9) {
+        if (posicaoJogo[2][posicao - 7] != poicaoVazia) {
+            printf("Essa posicao ja foi preenchida.\n");
+            printf("Escolha novamente!\n\n");
+            printf("\t 1 | 2 | 3 \n");
+            printf("\t-----------\n");
+            printf("\t 4 | 5 | 6 \n");
+            printf("\t-----------\n");
+            printf("\t 7 | 8 | 9 \n\n");
+        } else { 
+            posicaoJogo[2][posicao - 7] = elemento;
+        }
+    }
+        
+    if(1 > posicao && posicao <10) {
+        printf("\tPosicao inválida.\n");
+        printf("Escolha novamente!\n\n");
+        printf("\t 1 | 2 | 3 \n");
+        printf("\t-----------\n");
+        printf("\t 4 | 5 | 6 \n");
+        printf("\t-----------\n");
+        printf("\t 7 | 8 | 9 \n\n");
+    }    
+}
+
+while(1) {
+        if(controle %2 == 0) {
+            printf("Jogador O informe a posicao.\n");
+            scanf("%d", &posicao);
+            controle --;
+            xo = 'O';
+            entradaMatriz(posicao, xo);
+        } else {
+            printf("Jogador x informe a posicao.\n");
+            scanf("%d", &posicao);
+            controle ++;
+            xo = 'X';
+            entradaMatriz(posicao, xo);
+        }
+    }

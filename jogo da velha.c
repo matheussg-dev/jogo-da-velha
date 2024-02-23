@@ -4,21 +4,22 @@
 
 #define linhaQuantidade 3
 #define colunaQuantidade 3
-#define poicaoVazia '-'
-
-
+#define poicaoVazia ' '
+#define JogadorX 'X'
+#define JogadorO 'O'
 
 char posicaoJogo[linhaQuantidade][colunaQuantidade];
 
 //protopitagem de metodo
 void letreiro();
-void entradaMatriz(int push, char elemento);
 void escolhaIniciar();
 int validar(char jogada);
+void escolhajogador();
 
 int main() {
     
     escolhaIniciar();
+    escolhajogador();
     letreiro();
     
 }
@@ -28,13 +29,13 @@ void escolhaIniciar() {
     
     int resposta;
     
-    printf("\tOla bem vindo a jogo da velha v0.4.2 .\n");
+    printf("\tOla bem vindo a jogo da velha v0.5 .\n");
     printf("\tFeito em linguagem C\n\n");
-    printf("\t - | - | - \n");
+    printf("\t   |   |   \n");
     printf("\t-----------\n");
-    printf("\t - | - | - \n");
+    printf("\t   |   |   \n");
     printf("\t-----------\n");
-    printf("\t - | - | - \n\n");
+    printf("\t   |   |   \n\n");
     
     
     printf("\tescolha uma das opcoes para proseguir.\n");
@@ -45,7 +46,7 @@ void escolhaIniciar() {
     printf("\n");
 
     if(resposta == 1) {
-        printf("Iniciando...\n");    
+        printf("Iniciando...\n");  
         } else if (resposta == 2) {
             printf("Saindo...\n");
             exit(0);
@@ -54,41 +55,92 @@ void escolhaIniciar() {
                 printf("Opção inválida. Tente novamente.\n\n");
                 return escolhaIniciar();
     }
+}
+
+void escolhajogador() {
+    
+    char respostaJogador;
+    
+    printf("\tescolha o Jogador.\n\n");
+    printf("jogadorX: X\n");
+    printf("jogadorO: O\n");
+    scanf("%c", &respostaJogador);
+    printf("\n");
+    
+    if(respostaJogador == JogadorX) {
+        printf("Jogador X escolhido.\n\n");
+        letreiro(1);
+        } else if (respostaJogador == JogadorO) {
+            printf("Jogador O escolhido.\n\n");
+            letreiro(2);
+            } else {
+                system("clear");
+                printf("Jogador inválido. Tente novamente.\n");
+                return escolhajogador();
+    }
     printf("\t\t 1 | 2 | 3 \n");
     printf("\t\t-----------\n");
     printf("\t\t 4 | 5 | 6 \n");
     printf("\t\t-----------\n");
     printf("\t\t 7 | 8 | 9 \n\n");
-
 }
 
-
-void letreiro() {
+void letreiro(int jogador) {
     
-    char xo;
+    char elemento;
     int posicao;
-    int controle = 1;
+    char xo;
     int coluna;
     int linha;
 
-    //matriz do jogo da velha
     for(linha = 0; linha < linhaQuantidade; linha++) 
         for(coluna = 0; coluna < colunaQuantidade; coluna++)
             posicaoJogo[linha][coluna] = poicaoVazia;
-    
+
     while(1) {
-        if(controle %2 == 0) {
-            printf("Jogador O informe a posicao.\n");
-            scanf("%d", &posicao);
-            controle --;
-            xo = 'O';
-            entradaMatriz(posicao, xo);
+
+        if (jogador % 2 == 0) {
+            xo = JogadorO;
+            elemento = 'O';
         } else {
-            printf("Jogador x informe a posicao.\n");
-            scanf("%d", &posicao);
-            controle ++;
-            xo = 'X';
-            entradaMatriz(posicao, xo);
+            xo = JogadorX;
+            elemento = 'X';
+        }
+
+        printf("Jogador %c, é a sua vez.\n", xo);
+        scanf(" %i", &posicao);
+
+        if(posicao >= 1 && posicao <= 3) {
+            if (posicaoJogo[0][posicao - 1] != poicaoVazia) {
+                printf("Essa posicao ja foi preenchida.\n");
+                continue;
+            } else { 
+                posicaoJogo[0][posicao - 1] = elemento;
+            }
+        }
+    
+        else if(posicao >= 4 && posicao <= 6) {
+            if (posicaoJogo[1][posicao - 4] != poicaoVazia) {
+                printf("Essa posicao ja foi preenchida.\n");
+                continue;
+            } else { 
+                posicaoJogo[1][posicao - 4] = elemento;
+            }
+        }
+    
+        else if(posicao >= 7 && posicao <= 9) {
+            if (posicaoJogo[2][posicao - 7] != poicaoVazia) {
+                printf("Essa posicao ja foi preenchida.\n");
+
+                continue;
+            } else { 
+                posicaoJogo[2][posicao - 7] = elemento;
+            }
+        }
+        
+        if(1 > posicao && posicao <9) {
+            printf("\tPosicao inválida.\n");
+            continue;
         }
         
         printf("\t %c | %c | %c \n", posicaoJogo[0][0], posicaoJogo[0][1], posicaoJogo[0][2]);
@@ -96,67 +148,13 @@ void letreiro() {
         printf("\t %c | %c | %c \n", posicaoJogo[1][0], posicaoJogo[1][1], posicaoJogo[1][2]);
         printf("\t-----------\n");
         printf("\t %c | %c | %c \n\n", posicaoJogo[2][0], posicaoJogo[2][1], posicaoJogo[2][2]);
+        
+        jogador ++;
 
         if(validar(xo) == 1) {
-            printf("\tparabens jogado %c venceu\n", xo);
-            break;
+                printf("\tparabens jogador %c venceu\n", xo);
+                break;
         }
-    }
-}
-
-void entradaMatriz(int posicao, char elemento) {
-    
-
-    if(posicao >= 1 && posicao <= 3) {
-        if (posicaoJogo[0][posicao - 1] != poicaoVazia) {
-            printf("Essa posicao ja foi preenchida.\n");
-            printf("Escolha novamente!\n\n");
-            printf("\t 1 | 2 | 3 \n");
-            printf("\t-----------\n");
-            printf("\t 4 | 5 | 6 \n");
-            printf("\t-----------\n");
-            printf("\t 7 | 8 | 9 \n\n");
-        } else { 
-            posicaoJogo[0][posicao - 1] = elemento;
-        }
-    }
-    
-    else if(posicao >= 4 && posicao <= 6) {
-        if (posicaoJogo[1][posicao - 4] != poicaoVazia) {
-            printf("Essa posicao ja foi preenchida.\n");
-            printf("Escolha novamente!\n\n");
-            printf("\t 1 | 2 | 3 \n");
-            printf("\t-----------\n");
-            printf("\t 4 | 5 | 6 \n");
-            printf("\t-----------\n");
-            printf("\t 7 | 8 | 9 \n\n");
-        } else { 
-            posicaoJogo[1][posicao - 4] = elemento;
-        }
-    }
-    
-    else if(posicao >= 7 && posicao <= 9) {
-        if (posicaoJogo[2][posicao - 7] != poicaoVazia) {
-            printf("Essa posicao ja foi preenchida.\n");
-            printf("Escolha novamente!\n\n");
-            printf("\t 1 | 2 | 3 \n");
-            printf("\t-----------\n");
-            printf("\t 4 | 5 | 6 \n");
-            printf("\t-----------\n");
-            printf("\t 7 | 8 | 9 \n\n");
-        } else { 
-            posicaoJogo[2][posicao - 7] = elemento;
-        }
-    }
-        
-    if(1 > posicao && posicao <10) {
-        printf("\tPosicao inválida.\n");
-        printf("Escolha novamente!\n\n");
-        printf("\t 1 | 2 | 3 \n");
-        printf("\t-----------\n");
-        printf("\t 4 | 5 | 6 \n");
-        printf("\t-----------\n");
-        printf("\t 7 | 8 | 9 \n\n");
     }
 }
 
@@ -191,6 +189,5 @@ int validar(char jogada) {
             }
             valida = 0;
     }
-    
     return venceu;
 }
