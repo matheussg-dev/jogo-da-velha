@@ -27,7 +27,7 @@ void escolhaIniciar() {
     
     int resposta;
     
-    printf("\tOla bem vindo a jogo da velha v0.7 .\n");
+    printf("\tOla bem vindo a jogo da velha v1 .\n");
     printf("\tFeito em linguagem C\n\n");
     printf("\t\t   |   |   \n");
     printf("\t\t-----------\n");
@@ -203,10 +203,12 @@ int validar(char jogada) {
     int linha;
     int coluna;
     
-    if (posicaoJogo[0][0] == jogada || posicaoJogo[1][1] == jogada || posicaoJogo[2][2] == jogada) {
+    if (posicaoJogo[0][0] == jogada && posicaoJogo[1][1] == jogada && posicaoJogo[2][2] == jogada) {
         venceu = 1;
-    } else if (posicaoJogo[0][2] == jogada || posicaoJogo[1][1] == jogada || posicaoJogo[2][0] == jogada) {
+        return 1;
+    } else if (posicaoJogo[0][2] == jogada && posicaoJogo[1][1] == jogada && posicaoJogo[2][0] == jogada) {
         venceu = 1;
+        return 1;
     }
     
 
@@ -218,7 +220,7 @@ int validar(char jogada) {
         }
         if (valida == 3) {
             venceu = 1;
-            break;
+            return 1;
         }
         valida = 0;
     }
@@ -231,7 +233,7 @@ int validar(char jogada) {
         }
         if (valida == 3) {
             venceu = 1;
-            break;
+            return 1;
         }
         valida = 0;
     }
