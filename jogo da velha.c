@@ -17,11 +17,8 @@ int validar(char jogada);
 void escolhajogador();
 
 int main() {
-    
     escolhaIniciar();
     escolhajogador();
-    letreiro();
-    
 }
 
     
@@ -29,7 +26,7 @@ void escolhaIniciar() {
     
     int resposta;
     
-    printf("\tOla bem vindo a jogo da velha v0.5 .\n");
+    printf("\tOla bem vindo a jogo da velha v0.6 .\n");
     printf("\tFeito em linguagem C\n\n");
     printf("\t   |   |   \n");
     printf("\t-----------\n");
@@ -47,13 +44,13 @@ void escolhaIniciar() {
 
     if(resposta == 1) {
         printf("Iniciando...\n");  
-        } else if (resposta == 2) {
-            printf("Saindo...\n");
-            exit(0);
-            } else {
-                system("clear");
-                printf("Opção inválida. Tente novamente.\n\n");
-                return escolhaIniciar();
+    } else if (resposta == 2) {
+        printf("Saindo...\n");
+        exit(0);
+    } else {
+        system("clear");
+        printf("Opção inválida. Tente novamente.\n\n");
+        return escolhaIniciar();
     }
 }
 
@@ -70,20 +67,14 @@ void escolhajogador() {
     if(respostaJogador == JogadorX) {
         printf("Jogador X escolhido.\n\n");
         letreiro(1);
-        } else if (respostaJogador == JogadorO) {
-            printf("Jogador O escolhido.\n\n");
-            letreiro(2);
-            } else {
-                system("clear");
-                printf("Escolha inválida. Tente novamente.\n");
-                return escolhajogador();
-            }
-            
-    printf("\t\t 1 | 2 | 3 \n");
-    printf("\t\t-----------\n");
-    printf("\t\t 4 | 5 | 6 \n");
-    printf("\t\t-----------\n");
-    printf("\t\t 7 | 8 | 9 \n\n");
+    } else if (respostaJogador == JogadorO) {
+        printf("Jogador O escolhido.\n\n");
+        letreiro(2);
+    } else {
+        system("clear");
+        printf("Escolha inválida. Tente novamente.\n");
+        return escolhajogador();
+    }
 }
 
 void letreiro(int jogador) {
@@ -93,10 +84,19 @@ void letreiro(int jogador) {
     char xo;
     int coluna;
     int linha;
+    int novojogo;
+    int sim = 1;
+    int nao = 2;
 
     for(linha = 0; linha < linhaQuantidade; linha++) 
         for(coluna = 0; coluna < colunaQuantidade; coluna++)
             posicaoJogo[linha][coluna] = poicaoVazia;
+            
+    printf("\t 1 | 2 | 3 \n");
+    printf("\t-----------\n");
+    printf("\t 4 | 5 | 6 \n");
+    printf("\t-----------\n");
+    printf("\t 7 | 8 | 9 \n\n");
 
     while(1) {
 
@@ -132,14 +132,13 @@ void letreiro(int jogador) {
         else if(posicao >= 7 && posicao <= 9) {
             if (posicaoJogo[2][posicao - 7] != poicaoVazia) {
                 printf("Essa posicao ja foi preenchida.\n");
-
                 continue;
             } else { 
                 posicaoJogo[2][posicao - 7] = elemento;
             }
         }
         
-        if(1 > posicao && posicao <9) {
+        if(1 > posicao || posicao > 9) {
             printf("\tPosicao inválida.\n");
             continue;
         }
@@ -153,9 +152,25 @@ void letreiro(int jogador) {
         jogador ++;
 
         if(validar(xo) == 1) {
-                printf("\tparabens jogador %c venceu\n", xo);
-                break;
+            printf("\tparabens jogador %c venceu\n", xo);
+            break;
         }
+
+        if(posicaoJogo[linhaQuantidade][colunaQuantidade] != poicaoVazia) {
+        printf("Deu velha.");
+        }
+    }
+    printf("Voce gostaria de comecar uma nova partida.\n");
+    scanf(" %i", novojogo);
+
+    if(novojogo == 1) {
+        return escolhajogador();  
+    } else if (novojogo == 2) {
+        printf("Saindo...\n");
+        exit(0);
+    } else {
+        system("clear");
+        printf("Opção inválida. Tente novamente.\n\n");
     }
 }
 
@@ -191,12 +206,10 @@ int validar(char jogada) {
             valida = 0;
     }
 
-    if(posicaoJogo[0][0] = jogada && posicaoJogo[1][1] = jogada && posicaoJogo[2][2] = jogada) {
+    if(posicaoJogo[0][0] == jogada && posicaoJogo[1][1] == jogada && posicaoJogo[2][2] == jogada) {
         venceu = 1;
-        break;
-    } else if(posicaoJogo[0][2] = jogada && posicaoJogo[1][1] = jogada && posicaoJogo[2][0]= jogada) {
-        veceu = 1;
-        break;
+    } else if(posicaoJogo[0][2] == jogada && posicaoJogo[1][1] == jogada && posicaoJogo[2][0] == jogada) {
+        venceu = 1;
     }
     
     return venceu;
