@@ -10,12 +10,15 @@
 
 char posicaoJogo[linhaQuantidade][colunaQuantidade];
 int cotagem = 0;
+int jogadasPartidaTotais = 0;
 
-//protopitagem de metodo
 void letreiro();
 void escolhaIniciar();
 int validar(char jogada);
 void escolhajogador();
+int mensagemPosicaoInvalida();
+int mensagemPosicao();
+int painel();
 
 int main() {
     escolhaIniciar();
@@ -59,6 +62,7 @@ void escolhajogador() {
     char respostaJogador;
     
     printf("\tPartidas jogadas %i.\n", cotagem);
+    printf("Foram feitas %i jogadas totais.\n", jogadasPartidaTotais);
     printf("\tEscolha o Jogador.\n\n");
     printf("jogadorX: X\n");
     printf("jogadorO: O\n");
@@ -80,22 +84,14 @@ void escolhajogador() {
 
 void letreiro(int jogador) {
     
-    char elemento;
-    int posicao;
-    char xo;
-    int coluna;
-    int linha;
-    int novojogo;
+    char elemento, xo;
+    int posicao, coluna, linha, jogadasPartida = 0, novojogo;
 
     for(linha = 0; linha < linhaQuantidade; linha++) 
         for(coluna = 0; coluna < colunaQuantidade; coluna++)
             posicaoJogo[linha][coluna] = poicaoVazia;
             
-    printf("\t 1 | 2 | 3 \n");
-    printf("\t-----------\n");
-    printf("\t 4 | 5 | 6 \n");
-    printf("\t-----------\n");
-    printf("\t 7 | 8 | 9 \n\n");
+    mensagemPosicao();
 
     while(1) {
 
@@ -106,18 +102,14 @@ void letreiro(int jogador) {
             xo = JogadorX;
             elemento = 'X';
         }
-
+        
+        printf("Foram feitas %i jogadas.\n", jogadasPartida);
         printf("Jogador %c, é a sua vez.\n", xo);
         scanf(" %i", &posicao);
 
         if(posicao >= 1 && posicao <= 3) {
             if (posicaoJogo[0][posicao - 1] != poicaoVazia) {
-                printf("Essa posicao ja foi preenchida.\n");
-                printf("\t 1 | 2 | 3 \n");
-                printf("\t-----------\n");
-                printf("\t 4 | 5 | 6 \n");
-                printf("\t-----------\n");
-                printf("\t 7 | 8 | 9 \n\n");
+                mensagemPosicaoInvalida();
                 continue;
             } else { 
                 posicaoJogo[0][posicao - 1] = elemento;
@@ -126,12 +118,7 @@ void letreiro(int jogador) {
     
         else if(posicao >= 4 && posicao <= 6) {
             if (posicaoJogo[1][posicao - 4] != poicaoVazia) {
-                printf("Essa posicao ja foi preenchida.\n");
-                printf("\t 1 | 2 | 3 \n");
-                printf("\t-----------\n");
-                printf("\t 4 | 5 | 6 \n");
-                printf("\t-----------\n");
-                printf("\t 7 | 8 | 9 \n\n");
+                mensagemPosicaoInvalida();
                 continue;
             } else { 
                 posicaoJogo[1][posicao - 4] = elemento;
@@ -140,12 +127,7 @@ void letreiro(int jogador) {
     
         else if(posicao >= 7 && posicao <= 9) {
             if (posicaoJogo[2][posicao - 7] != poicaoVazia) {
-                printf("Essa posicao ja foi preenchida.\n");
-                printf("\t 1 | 2 | 3 \n");
-                printf("\t-----------\n");
-                printf("\t 4 | 5 | 6 \n");
-                printf("\t-----------\n");
-                printf("\t 7 | 8 | 9 \n\n");
+                mensagemPosicaoInvalida();
                 continue;
             } else { 
                 posicaoJogo[2][posicao - 7] = elemento;
@@ -154,21 +136,15 @@ void letreiro(int jogador) {
         
         if(1 > posicao || posicao > 9) {
             printf("\tPosicao inválida.\n");
-            printf("\t 1 | 2 | 3 \n");
-            printf("\t-----------\n");
-            printf("\t 4 | 5 | 6 \n");
-            printf("\t-----------\n");
-            printf("\t 7 | 8 | 9 \n\n");
+            mensagemPosicao();
             continue;
         }
         
-        printf("\t %c | %c | %c \n", posicaoJogo[0][0], posicaoJogo[0][1], posicaoJogo[0][2]);
-        printf("\t-----------\n");
-        printf("\t %c | %c | %c \n", posicaoJogo[1][0], posicaoJogo[1][1], posicaoJogo[1][2]);
-        printf("\t-----------\n");
-        printf("\t %c | %c | %c \n\n", posicaoJogo[2][0], posicaoJogo[2][1], posicaoJogo[2][2]);
+        painel();
         
         jogador ++;
+        jogadasPartida ++;
+        jogadasPartidaTotais ++;
 
         if(validar(xo) == 1) {
             printf("\tparabens jogador %c venceu.\n", xo);
@@ -178,7 +154,6 @@ void letreiro(int jogador) {
             break;
         }
     }
-    
     printf("Voce gostaria de comecar uma nova partida.\n");
     printf("\nsim: 1\n");
     printf("nao: 2\n");
@@ -191,7 +166,6 @@ void letreiro(int jogador) {
         printf("Saindo...\n");
         exit(0);
     } else {
-        system("clear");
         printf("Opção inválida. Tente novamente.\n\n");
     }
 }
@@ -247,6 +221,31 @@ int validar(char jogada) {
             }
         }
     }
-    	
     return venceu;
+}
+
+int mensagemPosicao() {
+    printf("\t 1 | 2 | 3 \n");
+    printf("\t-----------\n");
+    printf("\t 4 | 5 | 6 \n");
+    printf("\t-----------\n");
+    printf("\t 7 | 8 | 9 \n\n");
+}
+
+int mensagemPosicaoInvalida() {
+    printf("Essa posicao ja foi preenchida.\n");
+    printf("Escolha uma nova posicao.\n");
+    printf("\t 1 | 2 | 3 \n");
+    printf("\t-----------\n");
+    printf("\t 4 | 5 | 6 \n");
+    printf("\t-----------\n");
+    printf("\t 7 | 8 | 9 \n\n");
+}
+
+int painel() {
+    printf("\t %c | %c | %c \n", posicaoJogo[0][0], posicaoJogo[0][1], posicaoJogo[0][2]);
+    printf("\t-----------\n");
+    printf("\t %c | %c | %c \n", posicaoJogo[1][0], posicaoJogo[1][1], posicaoJogo[1][2]);
+    printf("\t-----------\n");
+    printf("\t %c | %c | %c \n\n", posicaoJogo[2][0], posicaoJogo[2][1], posicaoJogo[2][2]);
 }
