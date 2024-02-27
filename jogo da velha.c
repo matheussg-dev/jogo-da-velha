@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <time.h>
+
 
 #define linhaQuantidade 3
 #define colunaQuantidade 3
@@ -12,20 +14,53 @@ char posicaoJogo[linhaQuantidade][colunaQuantidade];
 int cotagem = 0;
 int jogadasPartidaTotais = 0;
 
-void letreiro();
 void escolhaIniciar();
-int validar(char jogada);
 void escolhajogador();
-int mensagemPosicaoInvalida();
-int mensagemPosicao();
-int painel();
-int matrizPosicao(int jogador);
+void letreiro();
 void newGame();
+
+int mensagemPosicao();
+int mensagemPosicaoInvalida();
 int matriz();
+int matrizPosicao(int jogador);
+int painel();
+int validar(char jogada);
+int validarForFor(char jogada);
 
 int main() {
     escolhaIniciar();
     escolhajogador();
+    
+}
+
+int teste_performance (){
+    clock_t start_t, end_t;
+    long total_t;
+    
+    printf("Funcao sem for...\r\n");
+    start_t = clock ();
+    for(long x=0;x<100000000;x++){
+        validar(JogadorX);
+    }
+    end_t = clock ();
+    total_t = (end_t - start_t);
+    printf ("Tempo Inicial: %lu\r\n", start_t);
+    printf ("Tempo Final: %lu\r\n", end_t);
+    printf ("Tempo Decorrido: %lu\r\n", total_t);
+
+
+    printf("Funcao com for...\r\n");
+    start_t = clock ();
+    for(long x=0;x<100000000;x++){
+        validarForFor(JogadorX);
+    }
+    end_t = clock ();
+    total_t = (end_t - start_t);
+    printf ("Tempo Inicial: %lu\r\n", start_t);
+    printf ("Tempo Final: %lu\r\n", end_t);
+    printf ("Tempo Decorrido: %lu\r\n", total_t);
+
+    return 0;
 }
 
     
@@ -98,6 +133,39 @@ void letreiro(int jogador) {
 
 int validar(char jogada) {
     
+    int venceu = 2;
+    int linha;
+    int coluna;
+    
+    if (posicaoJogo[0][0] == jogada && posicaoJogo[1][1] == jogada && posicaoJogo[2][2] == jogada) {
+        venceu = 1;
+        return 1;
+    } else if (posicaoJogo[0][2] == jogada && posicaoJogo[1][1] == jogada && posicaoJogo[2][0] == jogada) {
+        venceu = 1;
+        return 1;
+    }
+    
+    for (linha = 0; linha < linhaQuantidade; linha++) {
+        if (posicaoJogo[linha][0] == jogada && posicaoJogo[linha][1] == jogada && posicaoJogo[linha][2] == jogada) {
+            venceu = 1;
+            return 1;
+        }
+        if (posicaoJogo[linha][0] == ' ' || posicaoJogo[linha][1] == ' ' || posicaoJogo[linha][2] == ' ' ) {
+            venceu = 0;
+        }
+    }
+        
+    for (coluna = 0; coluna < colunaQuantidade; coluna++) {
+        if (posicaoJogo[0][coluna] == jogada && posicaoJogo[1][coluna] == jogada && posicaoJogo[2][coluna] == jogada) {
+            venceu = 1;
+            return 1;
+        }
+    }
+    return venceu;
+}
+
+int validarForFor(char jogada) {
+    
     int venceu = 0;
     int valida = 0;
     int linha;
@@ -111,7 +179,6 @@ int validar(char jogada) {
         return 1;
     }
     
-
     for (linha = 0; linha < linhaQuantidade; linha++) {
         for (coluna = 0; coluna < colunaQuantidade; coluna++) {
             if (posicaoJogo[linha][coluna] == jogada) {
@@ -161,11 +228,7 @@ int mensagemPosicao() {
 int mensagemPosicaoInvalida() {
     printf("Essa posicao ja foi preenchida.\n");
     printf("Escolha uma nova posicao.\n");
-    printf("\t 1 | 2 | 3 \n");
-    printf("\t-----------\n");
-    printf("\t 4 | 5 | 6 \n");
-    printf("\t-----------\n");
-    printf("\t 7 | 8 | 9 \n\n");
+    int mensagemPosicao();
 }
 
 int painel() {
@@ -227,7 +290,8 @@ int matrizPosicao(int jogador) {
             mensagemPosicao();
             continue;
         }
-            painel();
+        
+        painel();
         
         jogador ++;
         jogadasPartida ++;
